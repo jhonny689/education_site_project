@@ -16,16 +16,25 @@
 
 
  #oAuth_btn_0 {
-    content:url("http://imgur.com/SZ8Cm.jpg");
+ }
+ #oAuth_btn_0:hover {
+    content: url("http://imgur.com/SZ8Cm.jpg");
  }
 
  #oAuth_btn_1 {
-    
+ }
+ #oAuth_btn_1:hover {
+    content:url(asset_path('buttons/google/btn_google_signin_light_pressed_web.png'));
  }
 
  #oAuth_btn_2 {
+ }
+
+ #oAuth_btn_2:hover {
     content:url("http://imgur.com/SZ8Cm.jpg");
  }
+
+
 
  #oAuth_btn_3 {
     content:url("http://imgur.com/SZ8Cm.jpg");
