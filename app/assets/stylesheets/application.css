@@ -13,3 +13,20 @@
  *= require_tree .
  *= require_self
  */
+
+
+ #oAuth_btn_0 {
+    content:url("http://imgur.com/SZ8Cm.jpg");
+ }
+
+ #oAuth_btn_1 {
+    
+ }
+
+ #oAuth_btn_2 {
+    content:url("http://imgur.com/SZ8Cm.jpg");
+ }
+
+ #oAuth_btn_3 {
+    content:url("http://imgur.com/SZ8Cm.jpg");
+ }

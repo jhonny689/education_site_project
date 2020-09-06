@@ -19,8 +19,9 @@
 <% end %>
 
 <%- if devise_mapping.omniauthable? %>
-  <%- resource_class.omniauth_providers.each do |provider| %>
+  <%- resource_class.omniauth_providers.each_with_index do |provider, i| %>
     <%# link_to image_tag("#{provider}.png"), user_facebook_omniauth_authorize_path %><br />
-    <%= link_to "Sign in with #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider) %><br />
+    <%= link_to image_tag(asset_path('buttons/google/btn_google_signin_light_focus_web.png'), id: "oAuth_btn_#{i}") , omniauth_authorize_path(resource_name, provider) %><br />
   <% end %>
 <% end %>
+  
