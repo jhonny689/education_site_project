@@ -73,10 +73,32 @@ input {
    width: 100%;
    height: 25px;
 }
-
+// For OmniAuth Buttons:
 #facebook:hover {
    content: url(asset_path('buttons/login/facebook_btn_hover'));
 }
 #facebook:active {
    content: url(asset_path('buttons/login/facebook_btn_pressed'));
 }
+
+#google_oauth2:hover {
+   content: url(asset_path('buttons/login/google_oauth2_btn_hover'));
+}
+#google_oauth2:active {
+   content: url(asset_path('buttons/login/google_oauth2_btn_pressed'));
+}
+
+#twitter:hover {
+   content: url(asset_path('buttons/login/twitter_btn_hover'));
+}
+#twitter:active {
+   content: url(asset_path('buttons/login/twitter_btn_pressed'));
+}
+
+#github:hover {
+   content: url(asset_path('buttons/login/github_btn_hover'));
+}
+#github:active {
+   content: url(asset_path('buttons/login/github_btn_pressed'));
+}
+// end of Oauth Buttons
