@@ -13,29 +13,63 @@
  *= require_tree .
  *= require_self
  */
+body {
+   width:100vw;
+   height:100vh;
+}
+.body-wrapper {
+   width:80%;
+   height:100%;
+   margin-left: 10%;
+   margin-right: 10%;
+   outline-style: dashed;
+}
+.header {
+   background-color: cyan;
+   background-image: url("backgrounds/board-of-education-directors-blackboard-picture-frame.jpg");
+   background-position: center;
+   background-size: contain;
+   background-repeat: no-repeat;
+   height: 35%;
+   display: flex;
+   flex-direction: column-reverse;
+   align-content: flex-end;
+}
+.navbar {
+   width: 98%;
+   height: fit-content;
+   display: flex;
+   //justify-content: space-evenly;
+   flex-direction: row;
+}
 
-
- #oAuth_btn_0 {
- }
- #oAuth_btn_0:hover {
-    content: url("http://imgur.com/SZ8Cm.jpg");
- }
-
- #oAuth_btn_1 {
- }
- #oAuth_btn_1:hover {
-    content:url(asset_path('buttons/google/btn_google_signin_light_pressed_web.png'));
- }
-
- #oAuth_btn_2 {
- }
-
- #oAuth_btn_2:hover {
-    content:url("http://imgur.com/SZ8Cm.jpg");
- }
-
-
-
- #oAuth_btn_3 {
-    content:url("http://imgur.com/SZ8Cm.jpg");
- }
+.nav-btn {
+   width: 15%;
+   background-color: transparent;
+   padding: 8px;
+   display: block;
+   text-align: center;
+}
+.nav-btn:hover {
+   background-color: darkcyan;
+   cursor: pointer;
+}
+.content {
+   display: flex;
+   flex-direction: column;
+   align-content: center;
+   text-align: center;
+}
+.login_form_container {
+   align-self: center;
+   width:50%;
+}
+.field {
+   width:100%;
+   padding-top: 10px;
+   padding-bottom: 10px;
+}
+input {
+   width: 100%;
+   height: 25px;
+}
