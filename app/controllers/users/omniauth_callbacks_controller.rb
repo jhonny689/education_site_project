@@ -7,8 +7,14 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     end
 
     def google_oauth2
-        byebug
+        
         @user  = User.from_omniauth(omniauth_params)
+        sign_in(@user)
+        byebug
+        if @user.user_profile
+            redirect_to user_profile_path(@user)
+        end
+        redirect_to new_user_profile_path
         byebug
     end
 

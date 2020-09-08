@@ -1,0 +1,2 @@
+class GraduationPath < ApplicationRecord
+end

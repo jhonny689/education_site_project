@@ -1,0 +1,11 @@
+<h1><%= @student.name %>'s Page</h1>
+
+<h3>Graduation Path: <%= @student.graduation_path.name %></h3>
+<h4>Graduation Major: <%= @student.graduation_path.course_type %></h4>
+<br>
+<h3>Courses:</h3>
+<ul>
+    <% @student.enrolled_courses.each do |course| %>
+        <li><%= link_to course.name, course_path(course) %></li>
+    <% end %>
+</ul>

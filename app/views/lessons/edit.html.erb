@@ -1,0 +1,7 @@
+<h1>Edit Lesson</h1>
+
+<%= form_for @lesson do |f| %>
+    <%= f.label :content %>
+    <%= f.text_field :content %>
+    <%= f.submit %>
+<% end %>
