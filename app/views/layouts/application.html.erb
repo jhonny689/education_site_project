@@ -10,11 +10,15 @@
   </head>
 
   <body>
-    <div style="border-color: black; margin-left: 15%; margin-right: 15%; border-style: double;">
-      <div class="header" style="height:20%">
-        <button>Home</button><button>Button1</button><button>Button2</button>
+    <div class="body-wrapper">
+      <div class="header">
+        <div class="navbar">
+          <div class="nav-btn">Home</div><div class="nav-btn">Button1</div><div class="nav-btn">Button2</div>
+        </div>
       </div>
-      <%= yield %>
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
+      <div class="content"><%= yield %></div>
     </div>
   </body>
 </html>
