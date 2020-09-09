@@ -1,8 +1,10 @@
-<h1>New Lesson</h1>
+<h1>New Lesson Builder</h1>
 
 <%= form_for @lesson do |f| %>
-    <%= f.label :content %>
-    <%= f.text_field :content %>
-    <%= f.submit %>
+    <%= f.label :course_id %>
+    <%= f.number_field :course_id %>
+    <%= f.submit "Save Lesson Plan", id: 'save_lesson_btn' %>
+    <%= f.rich_text_area :test %>
+    
 <% end %>
 
