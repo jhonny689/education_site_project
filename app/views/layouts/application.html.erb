@@ -13,7 +13,13 @@
     <div class="body-wrapper">
       <div class="header">
         <div class="navbar">
-          <div class="nav-btn">Home</div><div class="nav-btn">Button1</div><div class="nav-btn">Button2</div>
+          <% if current_user.isAdmin? %>
+            <div class="nav-btn">Home</div><div class="nav-btn" id="admin_nav_curr"><%= link_to :Curriculum, graduation_paths_path %></div><div class="nav-btn">Admin2</div>
+          <% elsif current_user.isTeacher? %>
+            <div class="nav-btn">Home</div><div class="nav-btn">Teacher1</div><div class="nav-btn">Teacher2</div>
+          <% elsif current_user.isStudent? %>
+            <div class="nav-btn">Home</div><div class="nav-btn">Student1</div><div class="nav-btn">Student2</div>
+          <% end %>
         </div>
       </div>
       <p class="notice"><%= notice %></p>

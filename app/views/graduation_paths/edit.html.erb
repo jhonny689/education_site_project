@@ -1,2 +1,42 @@
-<h1>GraduationPaths#edit</h1>
-<p>Find me in app/views/graduation_paths/edit.html.erb</p>
+<h1>Update Graduation Program</h1>
+<button id='addCt' onclick="unhide()" >Add course type</button>
+<%= form_for @path do |f|%>
+    <%= f.label :title %><br>
+    <%= f.text_field :title %> <br>
+    <% @path.grad_programs.each_with_index do |gp, i| %>
+        <%= label_tag "Course Type" %><br>
+        <%= select_tag "graduation_path[grad_programs_attributes][#{i}][course_type]", options_from_collection_for_select(@course_types, :itself, :itself, "#{gp.course_type}"), include_blank: true %><br>
+        
+        <%= label_tag "Course Count"%><br>
+        <%= number_field_tag "graduation_path[grad_programs_attributes][#{i}][course_count]", "#{gp.course_count}"%><br>
+    <% end %>
+    <% more_inputs = 5 - @path.grad_programs.count %>
+    <% index = @path.grad_programs.count %>
+    <% more_inputs.times do %>
+        
+            <div id=<%="hidden_div_#{index}" %> class="hidden" style='display:none'>
+            <%= label_tag "Course Type" %><br>
+            <%= select_tag "graduation_path[grad_programs_attributes][#{index}][course_type]", options_from_collection_for_select(@course_types, :itself, :itself), include_blank: true %><br>
+            
+            <%= label_tag "Course Count"%><br>
+            <%= number_field_tag "graduation_path[grad_programs_attributes][#{index }][course_count]"%><br>
+        </div>
+        <% index += 1 %>
+
+    <% end %>
+    
+    <%= f.submit 'Update Program' %>
+<% end %>
+
+
+    <script>
+        let i = 5- document.getElementsByClassName("hidden").length;
+
+        function unhide() {
+            document.getElementById('hidden_div_'+i).style.display = 'block';
+            i++;
+            if (i=== 5) {
+                document.getElementById('addCt').disabled=true;
+            }
+        }
+    </script>

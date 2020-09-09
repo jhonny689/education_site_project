@@ -1,2 +1,58 @@
-<h1>GraduationPaths#new</h1>
-<p>Find me in app/views/graduation_paths/new.html.erb</p>
+<h1>Create Graduation Program</h1>
+<button id='addCt' onclick="unhide()" >Add course type</button>
+<%= form_for @graduation_path do |f|%>
+    <%= f.label :title %><br>
+    <%= f.text_field :title %> <br>
+    
+    <div id="hidden_div_1" style="display:none">
+        <%= label_tag "Course Type" %><br>
+        <%= select_tag "graduation_path[grad_programs_attributes][0][course_type]", options_from_collection_for_select(@course_types, :itself, :itself), include_blank: true %><br>
+        
+        <%= label_tag "Course Count"%><br>
+        <%= number_field_tag "graduation_path[grad_programs_attributes][0][course_count]"%><br>
+    </div>
+    <div id="hidden_div_2" style="display:none">
+        <%= label_tag "Course Type" %><br>
+        <%= select_tag "graduation_path[grad_programs_attributes][1][course_type]", options_from_collection_for_select(@course_types, :itself, :itself), include_blank: true%><br>
+        
+        <%= label_tag "Course Count"%><br>
+        <%= number_field_tag "graduation_path[grad_programs_attributes][1][course_count]"%><br>
+    </div>
+    <div id="hidden_div_3" style="display:none">
+        <%= label_tag "Course Type" %><br>
+        <%= select_tag "graduation_path[grad_programs_attributes][2][course_type]", options_from_collection_for_select(@course_types, :itself, :itself), include_blank: true %><br>
+        
+        <%= label_tag "Course Count"%><br>
+        <%= number_field_tag "graduation_path[grad_programs_attributes][2][course_count]"%><br>
+    </div>
+    <div id="hidden_div_4" style="display:none">
+        <%= label_tag "Course Type" %><br>
+        <%= select_tag "graduation_path[grad_programs_attributes][3][course_type]", options_from_collection_for_select(@course_types, :itself, :itself), include_blank: true %><br>
+        
+        <%= label_tag "Course Count"%><br>
+        <%= number_field_tag "graduation_path[grad_programs_attributes][3][course_count]"%><br>
+    </div>
+    <div id="hidden_div_5" style="display:none">
+        <%= label_tag "Course Type" %><br>
+        <%= select_tag "graduation_path[grad_programs_attributes][4][course_type]", options_from_collection_for_select(@course_types, :itself, :itself), include_blank: true %><br>
+        
+        <%= label_tag "Course Count"%><br>
+        <%= number_field_tag "graduation_path[grad_programs_attributes][4][course_count]"%><br>
+    </div>
+    
+    <%= f.submit 'Create Program' %>
+<% end %>
+
+
+    <script>
+        let i = 1;
+        function unhide() {
+            document.getElementById('hidden_div_'+i).style.display = 'block';
+            i++;
+            if (i=== 6) {
+                document.getElementById('addCt').disabled=true;
+            }
+        }
+    </script>
+
+    

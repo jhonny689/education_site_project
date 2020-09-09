@@ -1,5 +1,6 @@
 class UserProfilesController < ApplicationController
   before_action :find_user_profile, only: [:show, :edit, :update, :destroy]
+  skip_before_action :user_profile_exist?
   def index
     @user_profiles = UserProfile.all
   end
@@ -12,10 +13,15 @@ class UserProfilesController < ApplicationController
   end
 
   def create
-    user_profile = UserProfile.create(user_profile_params)
+    user_profile = UserProfile.new(user_profile_params)
+    user_profile.user_id = current_user.id
+    byebug
     if user_profile.valid?
+      user_profile.save
+      byebug
       redirect_to user_profile_path(user_profile)
     else
+      byebug
       flash[:errors] = user_profile.errors.full_messages
       redirect_to new_user_profile_path
     end
@@ -44,6 +50,6 @@ class UserProfilesController < ApplicationController
   end
 
   def user_profile_params
-    params.require(:user_profile).permit(:f_name, :m_name, :l_name, :phone_number, :email_address)
+    params.require(:user_profile).permit(:f_name, :m_name, :l_name, :phone_number, :is_admin)
   end
 end

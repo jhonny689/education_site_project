@@ -2,17 +2,32 @@ class GraduationPathsController < ApplicationController
   before_action :find_path, only: [:show, :edit, :update, :destroy]
 
   def index
-    @graduation_paths = GraduationPath.all
+    case current_user.type
+    when :admin
+      @graduation_paths = current_user.programs
+    when :student
+      @graduation_paths = current_user.graduation_path
+    else
+      @graduation_paths = Graduation_path.all
+    end
   end
 
   def show
+    
   end
 
   def new
+    @graduation_path = GraduationPath.new
+    @course_types = GraduationPath::COURSE_TYPES
+    5.times{@graduation_path.grad_programs.build()}
+    
   end
 
   def create
+    byebug
     path = GraduationPath.create(path_params)
+    path.update(user_id: current_user.id)
+    byebug
     if path.valid?
       redirect_to graduation_path_path(path)
     else
@@ -22,20 +37,25 @@ class GraduationPathsController < ApplicationController
   end
 
   def edit
+    @course_types = GraduationPath::COURSE_TYPES
   end
 
   def update
-    path = @path.create(path_params)
-    if path.valid?
-      redirect_to graduation_path_path(path)
+    @path.grad_programs.each{|gp| gp.destroy}
+    @path.update(path_params)
+    byebug
+    if @path.valid?
+      redirect_to graduation_path_path(@path)
     else
-      flash[:errors] = path.errors.full_messages
+      flash[:errors] = @path.errors.full_messages
       redirect_to edit_graduation_path_path
     end
   end
 
   def destroy
+    @path.grad_programs.each{|gp| gp.destroy}
     @path.destroy
+    redirect_to graduation_paths_path
   end
 
   private
@@ -45,5 +65,11 @@ class GraduationPathsController < ApplicationController
   end
 
   def path_params
-    params.require(:graduation_path).permit(:title, :course_type, :course_count, :user_id)
+    params["graduation_path"]["grad_programs_attributes"] = params["graduation_path"]["grad_programs_attributes"].select{|key,value| value["course_type"]!=""}
+    byebug
+    params.require(:graduation_path).permit(:title, grad_programs_attributes: [
+      :course_type,
+      :course_count
+    ])
+  end
 end

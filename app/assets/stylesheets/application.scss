@@ -14,7 +14,7 @@
  *= require_self
  */
 
-require actiontext
+
 
 body {
    width:100vw;
@@ -57,6 +57,7 @@ body {
    background-color: darkcyan;
    cursor: pointer;
 }
+
 .content {
    display: flex;
    flex-direction: column;

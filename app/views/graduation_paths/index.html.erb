@@ -1,2 +1,10 @@
 <h1>GraduationPaths#index</h1>
-<p>Find me in app/views/graduation_paths/index.html.erb</p>
+<h3>My Created Graduation Paths:</h3>
+<ul>
+    <% @graduation_paths.each do |gp| %>
+        <li><%= link_to gp.title, graduation_path_path(gp) %></li>
+    <% end %>
+</ul>
+<br>
+
+<%= button_to 'New Program', new_graduation_path_path, method: 'get' %>

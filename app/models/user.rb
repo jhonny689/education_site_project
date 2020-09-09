@@ -38,4 +38,36 @@ class User < ApplicationRecord
     byebug
     return user
   end
+  
+  def type
+    if self.isAdmin?
+      return :admin
+    elsif self.isStudent?
+      return :student
+    elsif self.isTeacher?
+      return :teacher
+    else
+      return :unassigned
+    end
+  end
+  def isAdmin?
+    self.user_profile.is_admin
+  end
+
+
+
+  def isTeacher?
+    # teacher_ids = TeacherCourse.all.map{|tc| tc.user_id}.uniq
+    # if teacher_ids
+    #   return teacher_ids.
+    !!self.teacher_courses
+  end
+
+  def isStudent?
+    !!self.student_grad_courses
+  end
+
+  def full_name
+    "#{self.user_profile.l_name}, #{self.user_profile.f_name}"
+  end
 end

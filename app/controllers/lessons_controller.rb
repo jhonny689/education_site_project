@@ -13,7 +13,8 @@ class LessonsController < ApplicationController
     @lesson = Lesson.new
   end
 
-  def create
+  def create 
+    #byebug
     lesson = Lesson.create(lesson_params)
     if lesson.valid?
       redirect_to lesson_path(lesson)
@@ -21,6 +22,9 @@ class LessonsController < ApplicationController
       flash[:errors] = lesson.errors.full_messages
       redirect_to new_lesson_path
     end
+    # lesson = Lesson.create!(params.require(:lesson).permit(:test, :course_id))
+    # #byebug
+    # redirect_to lesson_path(lesson)
   end
 
   def edit
@@ -47,6 +51,6 @@ class LessonsController < ApplicationController
   end
 
   def lesson_params
-    params.require(:lesson).permit(:title, :course_id, :content)
+    params.require(:lesson).permit(:title, :course_id, :content, :test)
   end
 end
