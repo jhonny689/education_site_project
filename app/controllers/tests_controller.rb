@@ -25,7 +25,7 @@ class TestsController < ApplicationController
   end
 
   def update
-    test = Test.update(test_params)
+    test = @test.update(test_params)
     if test.valid?
       redirect_to test_path(test)
     else

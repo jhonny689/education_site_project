@@ -1,5 +1,9 @@
 class StudentsController < ApplicationController
+  before_action :find_student, only: [:show, :edit, :update, :destroy]
+
   def index
+    student_ids = UserGradCourse.all.map{|ugc| ugc.user_id}.uniq
+    @students = User.where(id: teacher_ids)
   end
 
   def show

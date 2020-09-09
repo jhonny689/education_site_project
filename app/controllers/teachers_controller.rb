@@ -3,7 +3,7 @@ class TeachersController < ApplicationController
   
   def index
     teacher_ids = TeacherCourse.all.map{|tc| tc.user_id}.uniq
-    @teachers = User.where(user_id: teacher_ids)
+    @teachers = User.where(id: teacher_ids)
   end
 
   def show

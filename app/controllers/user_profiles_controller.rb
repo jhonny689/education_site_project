@@ -25,7 +25,7 @@ class UserProfilesController < ApplicationController
   end
 
   def update
-    user_profile = UserProfile.update(user_profile_params)
+    user_profile = @user_profile.update(user_profile_params)
     if user_profile.valid?
       redirect_to user_profile_path(user_profile)
     else

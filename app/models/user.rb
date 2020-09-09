@@ -7,11 +7,11 @@ class User < ApplicationRecord
   has_many :teachers, through: :teacher_courses, foreign_key: :admin_id, class_name: "User"
 
   # as student
-  has_many :user_grad_courses
-  has_one :graduation_path, through: :user_grad_courses
-  has_many :enrolled_courses, through: :user_grad_courses, class_name:"Course"
+  has_many :student_grad_courses
+  has_one :graduation_path, through: :student_grad_courses
+  has_many :enrolled_courses, through: :student_grad_courses, class_name:"Course"
   has_many :enrolled_lessons, through: :enrolled_courses, class_name:"Lesson"
-  has_many :student_tests, through: :user_grad_courses
+  has_many :student_tests, through: :student_grad_courses
   has_many :taken_tests, through: :student_tests, class_name:"Test"
   has_many :teachers, through: :enrolled_courses
 
