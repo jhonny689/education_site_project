@@ -43,4 +43,9 @@ class TeachersController < ApplicationController
   private 
   def find_teacher
     @teacher = TeacherCourse.find(params[:id])
+  end
+
+  def teacher_params
+    params.require(:teacher_course).permit(:admin_id, :user_id, :course_id)
+  end
 end
