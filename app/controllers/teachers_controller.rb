@@ -10,16 +10,20 @@ class TeachersController < ApplicationController
   end
 
   def new
+    byebug
     @teacher = TeacherCourse.new
+    @courses = current_user.created_courses
+    @course_id = params[:course_id] ? params[:course_id] : nil
+    @teachers = User.all.filter {|user| !user.isAdmin? && !user.isStudent? }
   end
 
   def create
     teacher = TeacherCourse.create(teacher_params)
     if teacher.valid?
-      redirect_to teacher_path(teacher)
+      redirect_to courses_path
     else
       flash[:errors] = teacher.errors.full_messages
-      redirect_to new_teacher_path
+      redirect_to new_teacher_course_path
     end
   end
 
@@ -29,10 +33,10 @@ class TeachersController < ApplicationController
   def update
     teacher = @teacher.update(teacher_params)
     if teacher.valid?
-      redirect_to teacher_path(teacher)
+      redirect_to teacher_course_path(teacher)
     else
       flash[:errors] = teacher.errors.full_messages
-      redirect_to edit_teacher_path
+      redirect_to edit_teacher_course_path
     end
   end
 

@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   root 'homepage#index'
 
   resources :user_profiles
-  resources :teachers
+  resources :teachers, as: :teacher_courses
   resources :students
   resources :graduation_paths
   resources :courses

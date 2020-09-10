@@ -1,6 +1,11 @@
 <h1><%= @course.name %></h1>
-<h2><%= @course.course_type %></h2>
+<h2>Course Type: <%= @course.course_type %></h2>
 
-<div>
+<div id='admin_courses'>
     <%= @course.description %>
+
+    <%= button_to 'Edit Course', edit_course_path, method: :get  %> <br>
+    <%= button_to 'Assign Teachers', new_teacher_course_path, method: :get, params: { course_id: @course.id } %> <br>
+    <%= button_to 'Delete Course', course_path(@course), method: :delete  %>
+
 </div>

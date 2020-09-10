@@ -13,8 +13,10 @@
     <div class="body-wrapper">
       <div class="header">
         <div class="navbar">
-          <% if current_user.isAdmin? %>
-            <div class="nav-btn">Home</div><div class="nav-btn" id="admin_nav_curr"><%= link_to :Curriculum, graduation_paths_path %></div><div class="nav-btn">Admin2</div>
+          <% if !current_user %>
+
+          <% elsif current_user.isAdmin? %>
+            <div class="nav-btn">Home</div><div class="nav-btn" id="admin_nav_curr"><%= link_to :Programs, graduation_paths_path %></div><div class="nav-btn"><%= link_to :Courses, courses_path %></div><div class="nav-btn"><%= link_to :Users, user_profiles_path %></div><div class="nav-btn"><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></div>
           <% elsif current_user.isTeacher? %>
             <div class="nav-btn">Home</div><div class="nav-btn">Teacher1</div><div class="nav-btn">Teacher2</div>
           <% elsif current_user.isStudent? %>
