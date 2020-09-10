@@ -10,7 +10,7 @@ class TeachersController < ApplicationController
   end
 
   def new
-    byebug
+    #by
     @teacher = TeacherCourse.new
     @courses = current_user.created_courses
     @course_id = params[:course_id] ? params[:course_id] : nil
@@ -18,11 +18,14 @@ class TeachersController < ApplicationController
   end
 
   def create
-    teacher = TeacherCourse.create(teacher_params)
-    if teacher.valid?
+    tc = TeacherCourse.new(teacher_params)
+    tc.admin_id = current_user.id
+    
+    if tc.valid?
+      tc.save
       redirect_to courses_path
     else
-      flash[:errors] = teacher.errors.full_messages
+      flash[:errors] = tc.errors.full_messages
       redirect_to new_teacher_course_path
     end
   end

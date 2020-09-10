@@ -4,7 +4,9 @@ class User < ApplicationRecord
   has_many :programs, class_name: "GraduationPath"
   has_many :created_courses, class_name: "Course"
   has_many :students, through: :created_courses, class_name: "User"
-  has_many :teachers, through: :teacher_courses, foreign_key: :admin_id, class_name: "User"
+  has_many :teacher_courses, foreign_key: :admin_id
+  has_many :teachers, through: :teacher_courses, class_name: "User"
+  
 
   # as student
   has_many :student_grad_courses
@@ -17,6 +19,7 @@ class User < ApplicationRecord
 
   # as Teacher
   has_many :teacher_courses, foreign_key: :user_id
+  has_many :teaching_courses, through: :teacher_courses, class_name: "Course"
   #has_many :created_courses, through: :teacher_courses, class_name: "Course"
   has_many :created_lessons, through: :created_courses, class_name:"Lesson"
   has_many :created_tests, through: :created_lessons, class_name:"Test"
@@ -50,6 +53,7 @@ class User < ApplicationRecord
       return :unassigned
     end
   end
+
   def isAdmin?
     self.user_profile.is_admin
   end
@@ -60,11 +64,11 @@ class User < ApplicationRecord
     # teacher_ids = TeacherCourse.all.map{|tc| tc.user_id}.uniq
     # if teacher_ids
     #   return teacher_ids.
-    !!self.teacher_courses
+    self.teacher_courses.length > 0
   end
 
   def isStudent?
-    !!self.student_grad_courses
+    self.student_grad_courses.count > 0
   end
 
   def full_name

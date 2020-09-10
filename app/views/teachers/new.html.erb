@@ -3,7 +3,7 @@
     <%= f.collection_select :course_id, @courses, :id, :name %><br>
 
     <%= f.label :teacher %><br>
-    <%= f.collection_select :user_id, @teachers, :id, :name %><br>
+    <%= f.collection_select :user_id, @teachers, :id, :full_name %><br>
 
     <%= f.submit "Assign" %>
 <% end %>

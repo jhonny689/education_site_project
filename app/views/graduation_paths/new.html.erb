@@ -13,7 +13,7 @@
     </div>
     <div id="hidden_div_2" style="display:none">
         <%= label_tag "Course Type" %><br>
-        <%= select_tag "graduation_path[grad_programs_attributes][1][course_type]", options_from_collection_for_select(@course_types, :itself, :itself), include_blank: true%><br>
+        <%= select_tag "graduation_path[grad_programs_attributes][1][course_type]", options_from_collection_for_select(@course_types, :itself, :itself), include_blank: true %><br>
         
         <%= label_tag "Course Count"%><br>
         <%= number_field_tag "graduation_path[grad_programs_attributes][1][course_count]"%><br>
