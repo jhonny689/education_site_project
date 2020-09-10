@@ -10,17 +10,17 @@ class TeachersController < ApplicationController
   end
 
   def new
-    #by
     @teacher = TeacherCourse.new
     @courses = current_user.created_courses
     @course_id = params[:course_id] ? params[:course_id] : nil
     @teachers = User.all.filter {|user| !user.isAdmin? && !user.isStudent? }
+
+    
   end
 
   def create
     tc = TeacherCourse.new(teacher_params)
     tc.admin_id = current_user.id
-    
     if tc.valid?
       tc.save
       redirect_to courses_path

@@ -1,0 +1,7 @@
+<h1>Assigning <%= @user.full_name %></h1>
+<%= form_for @student_grad do |f| %>
+    <%= f.hidden_field :user_id, value: @user.id %>
+    <%= f.label :programs %><br>
+    <%= f.collection_select :graduation_path_id, @programs, :id, :title %><br>
+    <%= f.submit 'Assign' %>
+<% end %>

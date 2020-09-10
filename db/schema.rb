@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_09_191203) do
+ActiveRecord::Schema.define(version: 2020_09_10_153328) do
 
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
@@ -76,10 +76,16 @@ ActiveRecord::Schema.define(version: 2020_09_09_191203) do
   end
 
   create_table "student_grad_courses", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "graduation_path_id"
     t.integer "course_id"
     t.string "status"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "student_grad_id"
+  end
+
+  create_table "student_grads", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "graduation_path_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

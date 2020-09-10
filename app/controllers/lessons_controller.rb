@@ -2,7 +2,7 @@ class LessonsController < ApplicationController
   before_action :find_lesson, only: [:show, :edit, :update, :destroy]
 
   def index
-    @lessons = Lesson.all
+    @lessons = current_user.created_lessons
   end
 
   def show
@@ -10,12 +10,16 @@ class LessonsController < ApplicationController
   end
 
   def new
+    @courses = current_user.teaching_courses
     @lesson = Lesson.new
+    @course_id = params[:course_id] ? params[:course_id] : nil
+    
   end
 
   def create 
-    #byebug
+
     lesson = Lesson.create(lesson_params)
+    #byebug
     if lesson.valid?
       redirect_to lesson_path(lesson)
     else
@@ -23,7 +27,7 @@ class LessonsController < ApplicationController
       redirect_to new_lesson_path
     end
     # lesson = Lesson.create!(params.require(:lesson).permit(:test, :course_id))
-    # #byebug
+    
     # redirect_to lesson_path(lesson)
   end
 

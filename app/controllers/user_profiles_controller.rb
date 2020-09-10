@@ -5,17 +5,18 @@ class UserProfilesController < ApplicationController
     
     @user_profiles = UserProfile.all.filter {|u| !u.user.isAdmin?}
     if params[:lookup] && params[:lookup][:name] != ''
-      @user_profiles = @user_profiles.filter{|u| u.user.full_name.include? params[:lookup][:name]}
+      @user_profiles = @user_profiles.filter{|u| u.user.full_name.downcase.include? params[:lookup][:name].downcase}
     end
-    #byebug
+    
     if params[:lookup] && params[:lookup][:type] != ''
       @user_profiles = @user_profiles.filter{|u| u.user.type.to_s == params[:lookup][:type]} 
     end
-    byebug
+  
     @types = [:student, :teacher, :unassigned]
   end
 
   def show
+    
   end
 
   def new
@@ -25,13 +26,13 @@ class UserProfilesController < ApplicationController
   def create
     user_profile = UserProfile.new(user_profile_params)
     user_profile.user_id = current_user.id
-    byebug
+  
     if user_profile.valid?
       user_profile.save
-      byebug
+    
       redirect_to user_profile_path(user_profile)
     else
-      byebug
+    
       flash[:errors] = user_profile.errors.full_messages
       redirect_to new_user_profile_path
     end

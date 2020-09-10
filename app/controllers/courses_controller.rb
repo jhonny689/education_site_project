@@ -8,9 +8,9 @@ class CoursesController < ApplicationController
     when :student
       @courses = current_user.enrolled_courses
     when :teacher
-      @courses = current_user.teacher_courses
+      @courses = current_user.teaching_courses
     else
-      @courses = Courses.all
+      @courses = Course.all
     end
   end
 

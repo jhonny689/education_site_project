@@ -1,0 +1,8 @@
+<h1>List of Courses to be enrolled</h1>
+<ul>
+
+    <% @courses.each do |course| %>
+        <li><%= "#{course.name}, #{course.course_type}" %> <%= button_to :Enroll, student_grad_courses_path, params:{course_id: course.id}%></li>
+    <% end %>
+
+</ul>

@@ -24,10 +24,10 @@ class GraduationPathsController < ApplicationController
   end
 
   def create
-    byebug
+  
     path = GraduationPath.create(path_params)
     path.update(user_id: current_user.id)
-    byebug
+  
     if path.valid?
       redirect_to graduation_path_path(path)
     else
@@ -43,7 +43,7 @@ class GraduationPathsController < ApplicationController
   def update
     @path.grad_programs.each{|gp| gp.destroy}
     @path.update(path_params)
-    byebug
+  
     if @path.valid?
       redirect_to graduation_path_path(@path)
     else
@@ -66,7 +66,7 @@ class GraduationPathsController < ApplicationController
 
   def path_params
     params["graduation_path"]["grad_programs_attributes"] = params["graduation_path"]["grad_programs_attributes"].select{|key,value| value["course_type"]!=""}
-    byebug
+  
     params.require(:graduation_path).permit(:title, grad_programs_attributes: [
       :course_type,
       :course_count

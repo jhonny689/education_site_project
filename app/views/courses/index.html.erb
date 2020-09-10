@@ -2,8 +2,10 @@
 <% if current_user.isAdmin? %>
     <%= button_to 'Create Course', new_course_path, method: :get %>
 <% end %>
+
 <ul>
     <% @courses.each do |course| %>
         <li><%= link_to course.name, course_path(course) %></li>
     <% end %>
 </ul>
+

@@ -1,7 +1,7 @@
-<h1>Lessons Index</h1>
+<h1>My Lessons</h1>
 
 <ul>
     <% @lessons.each do |lesson| %>
-        <%= link_to lesson.title, lesson_path(lesson) %>
+        <li>Name: <%= link_to lesson.title, lesson_path(lesson) %>, Course: <%= lesson.course.name %> </li>
     <% end %>
 </ul>

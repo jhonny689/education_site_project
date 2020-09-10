@@ -1,7 +1,9 @@
 <%= form_for @teacher do |f| %>
     <%= f.label :course  %><br>
-    <%= f.collection_select :course_id, @courses, :id, :name %><br>
-
+    <%= f.collection_select :course_id, @courses, :id, :name, @course_id ? {selected: @course_id} : {}, @course_id ? {:disabled=>"disabled"} : {} %><br>
+    <% if @course_id %>
+        <%= f.hidden_field :course_id, value: @course_id %>
+    <% end %>
     <%= f.label :teacher %><br>
     <%= f.collection_select :user_id, @teachers, :id, :full_name %><br>
 

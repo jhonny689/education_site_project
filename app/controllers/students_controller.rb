@@ -3,7 +3,7 @@ class StudentsController < ApplicationController
 
   def index
     student_ids = StudentGradCourse.all.map{|ugc| ugc.user_id}.uniq
-    @students = User.where(id: teacher_ids)
+    @students = User.where(id: student_ids)
   end
 
   def show
@@ -32,6 +32,7 @@ class StudentsController < ApplicationController
     else
       flash[:errrors] = student.errors.full_messages
       redirect_to edit_student_path
+    end
   end
 
   def destroy
