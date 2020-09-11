@@ -1,11 +1,13 @@
-<h1>Courses index</h1>
-<% if current_user.isAdmin? %>
-    <%= button_to 'Create Course', new_course_path, method: :get %>
-<% end %>
-
-<ul>
-    <% @courses.each do |course| %>
-        <li><%= link_to course.name, course_path(course) %></li>
+<div class = 'page-main'>
+    <h1>Courses index</h1>
+    <% if current_user.isAdmin? %>
+        <%= button_to 'Create Course', new_course_path, method: :get %>
     <% end %>
-</ul>
 
+    <ul class = 'w3-container'>
+        <% @courses.each do |course| %>
+            <li><%= link_to course.name, course_path(course) %></li>
+        <% end %>
+    </ul>
+
+</div>

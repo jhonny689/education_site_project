@@ -1,15 +1,17 @@
-<h1>User Search:</h1>
-<div id="lookupDiv">
-    <%= form_tag user_profiles_path, {method: :get} do %>
-        <%= label_tag 'Search' %>
-        <%= text_field_tag :'lookup[name]' %>
-        <%= label_tag :type %>
-        <%= select_tag :'lookup[type]', options_from_collection_for_select(@types, :itself, :itself), include_blank: true %>
-        <%= submit_tag "Lookup" %>
-    <% end %>
+<div class = 'page-main'>
+    <h1>User Search:</h1>
+    <div id="lookupDiv">
+        <%= form_tag user_profiles_path, {method: :get} do %>
+            <%= label_tag 'Search' %>
+            <%= text_field_tag :'lookup[name]' %>
+            <%= label_tag :type %>
+            <%= select_tag :'lookup[type]', options_from_collection_for_select(@types, :itself, :itself), include_blank: true %>
+            <%= submit_tag "Lookup" %>
+        <% end %>
+    </div>
+    <ul class = 'w3-container'>
+        <% @user_profiles.each do |profile| %>
+            <li><%= link_to profile.user.full_name, user_profile_path(profile) %></li>
+        <% end %>
+    </ul>
 </div>
-<ul>
-    <% @user_profiles.each do |profile| %>
-        <li><%= link_to profile.user.full_name, user_profile_path(profile) %></li>
-    <% end %>
-</ul>

@@ -7,6 +7,8 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
   </head>
 
   <body>
@@ -15,16 +17,19 @@
         <div class="navbar">
           <% if !current_user || !current_user.user_profile %>
           <% elsif current_user.type == :unassigned %>
-            <div class="nav-btn"><%= link_to :Courses, courses_path %></div>
+            <div class="nav-btn"><%= link_to :Courses, courses_path %><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></div>
           <% elsif current_user.isAdmin? %>
-            <div class="nav-btn">Home</div><div class="nav-btn" id="admin_nav_curr"><%= link_to :Programs, graduation_paths_path %></div><div class="nav-btn"><%= link_to :Courses, courses_path %></div><div class="nav-btn"><%= link_to :Users, user_profiles_path %></div><div class="nav-btn"><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></div>
+            <div class="nav-btn"><%= link_to :home, user_profile_path(current_user.user_profile) %></div><div class="nav-btn" id="admin_nav_curr"><%= link_to :Programs, graduation_paths_path %></div><div class="nav-btn"><%= link_to :Courses, courses_path %></div><div class="nav-btn"><%= link_to :Users, user_profiles_path %></div><div class="nav-btn"><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></div>
           <% elsif current_user.isTeacher? %>
-            <div class="nav-btn">Home</div><div class="nav-btn"><%= link_to :Courses, courses_path %></div><div class="nav-btn"><%= link_to :Lessons, lessons_path %></div><div class="nav-btn"><%= link_to :Students, students_path %></div><div class="nav-btn"><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></div>
+            <div class="nav-btn"><%= link_to :home, user_profile_path(current_user.user_profile) %></div><div class="nav-btn"><%= link_to :Courses, courses_path %></div><div class="nav-btn"><%= link_to :Lessons, lessons_path %></div><div class="nav-btn"><%= link_to :Students, students_path %></div><div class="nav-btn"><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></div>
           <% elsif current_user.isStudent? %>
-            <div class="nav-btn">Home</div><div class="nav-btn"><%= link_to :Enroll, student_grad_courses_path %></div><div class="nav-btn">Student2</div>
+            <div class="nav-btn"><%= link_to :home, user_profile_path(current_user.user_profile) %></div><div class="nav-btn"><%= link_to :Enroll, student_grad_courses_path %></div><div class="nav-btn"><%= link_to :Courses, courses_path %></div><div class="nav-btn"><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></div>
           <% end %>
         </div>
       </div>
+      
+      <div id="yielded-page">
+        <%= yield %>
+      </div>
       <p class="notice"><%= notice %></p>
       <p class="alert"><%= alert %></p>
-      <div class="content"><%= yield %></div>

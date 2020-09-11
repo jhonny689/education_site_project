@@ -6,6 +6,8 @@ class LessonsController < ApplicationController
   end
 
   def show
+    @notes = current_user.notes.where(lesson_id: params[:id])
+    @note = Note.new
     @lesson = Lesson.find(params[:id])
   end
 

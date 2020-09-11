@@ -1,5 +1,16 @@
 <h1>List of Courses to be enrolled</h1>
+<div>
+    <ul>
+    <h2>Required Courses To Graduate</h2>
+        <% @remaining.each do |course, count| %>
+            <% if count != 0 %>
+                <li><%= "Course Type: #{course}, Count: #{count}" %></li>
+            <% end %>
+        <% end %>
+    </ul>
+</div>
 <ul>
+
 
     <% @courses.each do |course| %>
         <li><%= "#{course.name}, #{course.course_type}" %> <%= button_to :Enroll, student_grad_courses_path, params:{course_id: course.id}%></li>

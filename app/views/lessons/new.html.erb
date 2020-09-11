@@ -1,18 +1,20 @@
+<div class = 'page-main'>
 <h1>New Lesson Builder</h1>
 
-<%= form_for @lesson do |f| %>
-    <%= f.label :title %>
-    <%= f.text_field :title %>
+    <%= form_for @lesson do |f| %>
+        <%= f.label :title %>
+        <%= f.text_field :title %>
 
-    <%= f.label :course %>
-    <%= f.collection_select :course_id, @courses, :id, :name, @course_id ? {selected: @course_id} : {}, @course_id ? {:disabled=>"disabled"} : {} %> <br>
+        <%= f.label :course %>
+        <%= f.collection_select :course_id, @courses, :id, :name, @course_id ? {selected: @course_id} : {}, @course_id ? {:disabled=>"disabled"} : {} %> <br>
 
-    <% if @course_id %>
-        <%= f.hidden_field :course_id, value: @course_id %>
+        <% if @course_id %>
+            <%= f.hidden_field :course_id, value: @course_id %>
+        <% end %>
+        
+        <%= f.rich_text_area :test, id: 'lesson_editor' %>
+        <%= f.submit "Save Lesson Plan", id: 'save_lesson_btn' %>
+        
     <% end %>
-    
-    <%= f.rich_text_area :test, id: 'lesson_editor' %>
-    <%= f.submit "Save Lesson Plan", id: 'save_lesson_btn' %>
-    
-<% end %>
 
+</div>

@@ -1,3 +1,33 @@
 // Place all the styles related to the lessons controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+
+div#lesson_window {
+    margin: auto; 
+    padding:5px; 
+    background-color: #C2C094; 
+    width: 100%; 
+    align-self: center;
+    height: 8in; 
+    overflow: auto; 
+    text-align:justify;
+    //box-shadow: 5px 10px #888888;
+    //box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+div.w3-container {
+    padding: 0;
+}
+div.w3-sidebar {
+    position: absolute!important;
+}
+div#new_notes{
+    display:flex;
+    flex-wrap: wrap;
+    margin: auto;
+    width:100%;
+}
+#new_notes *{
+    width:100%;
+}
+

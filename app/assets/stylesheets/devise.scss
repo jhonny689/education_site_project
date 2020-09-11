@@ -1,0 +1,27 @@
+h2{
+    text-align: center;
+    //backdrop-filter: invert(0.5);
+}
+
+.login_form_container, .sign-up-container, .forgot-pass-form{
+    text-align: center;
+    width: 60%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.login_form_container *, .sign-up-container *, .forgot-pass-form *{
+    width:100%;
+}
+div.field > br{
+    height: 5px;
+}
+div.field > *{
+    padding: 0;
+    height: 25px;
+}
+
+div.actions > *{
+    height: 30px;
+}

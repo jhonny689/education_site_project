@@ -1,9 +1,11 @@
-<h1>My Created Programs:</h1>
-<ul>
-    <% @graduation_paths.each do |gp| %>
-        <li><%= link_to gp.title, graduation_path_path(gp) %></li>
-    <% end %>
-</ul>
-<br>
+<div class = 'grad-path-index'>
+    <h1>My Created Programs:</h1>
+    <ul class = 'w3-container'>
+        <% @graduation_paths.each do |gp| %>
+            <li><%= link_to gp.title, graduation_path_path(gp) %></li>
+        <% end %>
+    </ul>
+    <br>
 
-<%= button_to 'New Program', new_graduation_path_path, method: 'get' %>
+    <%= button_to 'New Program', new_graduation_path_path, method: 'get' %>
+</div>

@@ -1,5 +1,7 @@
 class StudentGradsController < ApplicationController
   def index
+
+    
   end
 
   def show

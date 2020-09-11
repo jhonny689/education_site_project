@@ -1,7 +1,9 @@
+<div class = 'page-main'>
 <h1>My Lessons</h1>
 
-<ul>
-    <% @lessons.each do |lesson| %>
-        <li>Name: <%= link_to lesson.title, lesson_path(lesson) %>, Course: <%= lesson.course.name %> </li>
-    <% end %>
-</ul>
+    <ul class = 'w3-container'>
+        <% @lessons.each do |lesson| %>
+            <li>Name: <%= link_to lesson.title, lesson_path(lesson) %>, Course: <%= lesson.course.name %> </li>
+        <% end %>
+    </ul>
+</div>

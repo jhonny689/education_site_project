@@ -1,11 +1,15 @@
-<h1><%= @path.title %></h1>
-<% if current_user.isAdmin? %>
-    <%= button_to "Edit", edit_graduation_path_path(@path), method: :get %>
-    <%= button_to "Delete", graduation_path_path(@path), method: :delete %>
-<% end %>
-<ul>
-    <% @path.grad_programs.each do |gp| %>
-        <li><%= "#{gp.course_count}, of type #{gp.course_type}" %></li>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
+<div class = 'grad-path-show'>
+    <h1><%= @path.title %></h1>
+    <% if current_user.isAdmin? %>
+        <%= button_to "Edit", edit_graduation_path_path(@path), method: :get %>
+        <%= button_to "Delete", graduation_path_path(@path), method: :delete %>
     <% end %>
-</ul>
+    <ul class = 'w3-container'>
+        <% @path.grad_programs.each do |gp| %>
+            <li><%= "#{gp.course_count}, of type #{gp.course_type}" %> </li>
+
+        <% end %>
+    </ul>
+</div>

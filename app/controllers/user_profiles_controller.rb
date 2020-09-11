@@ -24,17 +24,22 @@ class UserProfilesController < ApplicationController
   end
 
   def create
-    user_profile = UserProfile.new(user_profile_params)
-    user_profile.user_id = current_user.id
-  
-    if user_profile.valid?
-      user_profile.save
-    
-      redirect_to user_profile_path(user_profile)
+    if params[:signout]
+      sign_out(current_user)
+      redirect_to root_path
     else
+      user_profile = UserProfile.new(user_profile_params)
+      user_profile.user_id = current_user.id
     
-      flash[:errors] = user_profile.errors.full_messages
-      redirect_to new_user_profile_path
+      if user_profile.valid?
+        user_profile.save
+      
+        redirect_to user_profile_path(user_profile)
+      else
+      
+        flash[:errors] = user_profile.errors.full_messages
+        redirect_to new_user_profile_path
+      end
     end
   end
 
@@ -52,7 +57,8 @@ class UserProfilesController < ApplicationController
   end
 
   def destroy
-    @user_profile.destroy
+    #@user_profile.destroy
+    sign_out current_user
   end
 
   private

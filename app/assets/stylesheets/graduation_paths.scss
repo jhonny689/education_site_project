@@ -1,3 +1,61 @@
 // Place all the styles related to the graduation_paths controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+
+h1{
+    text-align: center;
+}
+
+.grad-path-new{
+    text-align: center;
+    width: 60%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.grad-path-new *{
+    width:100%;
+}
+.grad-path-index{
+    text-align: center;
+    width: 60%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.grad-path-index *{
+    width:100%;
+}
+.grad-path-show{
+    text-align: center;
+    width: 60%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.grad-path-show *{
+    width:100%;
+}
+.grad-path-new input[type="text"], .grad-path-new input[type="number"]{
+    padding: 0 0 0 0;
+}
+
+ul.w3-container{
+    background-color: #dc9596
+}
+
+// div.grad-path-index form.button_to{
+//     width: 60%;
+//     margin: auto;
+//     align-items: center;
+// }
+
+// div.grad-path-index form.button_to input{
+//     width: 100%;
+// }
+
+

@@ -7,9 +7,13 @@ class UserProfile < ApplicationRecord
     end
 
     def status
-        # byebug
-        if self.user.type == :student || :unassigned
-            return self.user.program ? 'Enrolled' : 'Pending'
+
+        if self.user.type == :student || self.user.type == :unassigned
+            if self.user.type == :student
+                return self.user.program ? 'Enrolled' : 'Pending'
+            else
+                return 'Pending'
+            end
         else
             return nil
         end
