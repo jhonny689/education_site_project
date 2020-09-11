@@ -12,6 +12,8 @@ class LessonsController < ApplicationController
   end
 
   def new
+    byebug
+    return head(:forbidden) unless current_user.isTeacher?
     @courses = current_user.teaching_courses
     @lesson = Lesson.new
     @course_id = params[:course_id] ? params[:course_id] : nil
@@ -34,15 +36,16 @@ class LessonsController < ApplicationController
   end
 
   def edit
+    @courses = current_user.teaching_courses
   end
 
   def update
-    lesson = @lesson.update(lesson_params)
-    if lesson.valid?
-      redirect_to lesson_path(lesson)
+    @lesson.update(lesson_params)
+    if @lesson.valid?
+      redirect_to lesson_path(@lesson)
     else
-      flash[:errors] = lesson.errors.full_messages
-      redirect_to edit_lesson_path
+      flash[:errors] = @lesson.errors.full_messages
+      redirect_to edit_lesson_path(@lesson)
     end
   end
 

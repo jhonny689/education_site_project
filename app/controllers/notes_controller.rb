@@ -6,7 +6,7 @@ class NotesController < ApplicationController
   end
 
   def create
-    byebug
+    #byebug
     note = Note.new(params.require(:note).permit(:title, :body, :lesson_id))
     note.user_id = current_user.id
     

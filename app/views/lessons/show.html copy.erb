@@ -2,21 +2,23 @@
 <button class="w3-button w3-teal w3-xlarge" onclick="w3_open()">☰</button>
     <h1><%= @lesson.title %></h1>
     <%= @lesson.test %>
+    <% byebug %>
+    <% if current_user.isStudent? %>
+        <div id = new_notes>
+            <h3>Add Note:</h3>
+            <%= form_for @note do |f| %>
+            
+                <%= f.label :title %>
+                <%= f.text_field :title %>
 
-    <div id = new_notes>
-        <h3>Add Note:</h3>
-        <%= form_for @note do |f| %>
-        
-            <%= f.label :title %>
-            <%= f.text_field :title %>
+                <%= f.label :body %>
+                <%= f.text_area :body %>
 
-            <%= f.label :body %>
-            <%= f.text_area :body %>
-
-            <%= f.hidden_field :lesson_id, value: @lesson.id %>
-            <%= f.submit %>
-        <% end %>
-    </div>
+                <%= f.hidden_field :lesson_id, value: @lesson.id %>
+                <%= f.submit %>
+            <% end %>
+        </div>
+    <% end %>
 </div>
 <div id = 'mySidebar' class = "w3-sidebar w3-bar-block w3-border-right" style="display:none" id="mySidebar">
 <button onclick="w3_close()" class="w3-bar-item w3-large" >Close &times;</button>

@@ -18,6 +18,7 @@ class CoursesController < ApplicationController
   end
 
   def new
+    return head(:forbidden) unless current_user.isAdmin?
     @course = Course.new
     @course_types = GraduationPath::COURSE_TYPES
     @course_types.unshift("")
@@ -37,6 +38,7 @@ class CoursesController < ApplicationController
   end
 
   def edit
+    return head(:forbidden) unless current_user.isAdmin?
     @course_types = GraduationPath::COURSE_TYPES
     @course_types.unshift("")
   end
@@ -52,6 +54,7 @@ class CoursesController < ApplicationController
   end
 
   def destroy
+    return head(:forbidden) unless current_user.isAdmin?
     @course.destroy
     redirect_to courses_path
   end

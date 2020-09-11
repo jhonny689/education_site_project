@@ -2,21 +2,24 @@
     <h1><%= @course.name %></h1>
 
     <h2>Course Type: <%= @course.course_type %></h2>
+    <p><%= @course.description %></p>
 
     <% if @course.teachers.count > 0 %>
         <h2>Teacher: <%= @course.teachers.first.full_name %></h2>
         <% if @course.lessons != [] %>
-            <ul>
+            <ul class = 'w3-container'>
                 <% @course.lessons.each do |l| %>
                     <li><%= link_to l.title, lesson_path(l) %></li>
                 <% end %>
+            <% else %>
+                 <h4>Professor <%= @course.teachers.first.user_profile.l_name %> has not assigned any lesson yet </h4>
             </ul>
         <% end %>
     <% end %>
 
 
 
-    <%= @course.description %>
+    
     <% if current_user.isAdmin? %>
         <%= button_to 'Edit Course', edit_course_path, method: :get  %> <br>
         <%= button_to 'Delete Course', course_path(@course), method: :delete  %>

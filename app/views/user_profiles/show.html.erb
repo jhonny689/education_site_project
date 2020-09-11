@@ -6,34 +6,34 @@
     <% end %>
 
     <div class="user_info">
-        <table align="center">
+        <table style="table-layout: fixed;">
             <tr>
-                <td><h3>First Name</h3></td>
+                <td><h4>First Name</h4></td>
                 <td>:</td>
-                <td><h3><i><%= @user_profile.f_name %></i></h3></td>
+                <td><h4><i><%= @user_profile.f_name %></i></h4></td>
             </tr>
             <tr>
-                <td><h3>Middle Name</h3></td>
+                <td><h4>Middle Name</h4></td>
                 <td>:</td>
-                <td><h3><i><%= @user_profile.m_name %></i></h3></td>
+                <td><h4><i><%= @user_profile.m_name %></i></h4></td>
             </tr>
             <tr>
-                <td><h3>Last Name</h3></td>
+                <td><h4>Last Name</h4></td>
                 <td>:</td>
-                <td><h3><i><%= @user_profile.l_name %></i></h3></td>
+                <td><h4><i><%= @user_profile.l_name %></i></h4></td>
             </tr>
             <tr>
-                <td><h3>Email Address</h3></td>
+                <td><h4>Email Address</h4></td>
                 <td>:</td>
-                <td><h3><i><%= @user_profile.user.email %></i></h3></td>
+                <td><h4><i><%= @user_profile.user.email %></i></h4></td>
             </tr>
             <tr>
-                <td><h3>Phone Number</h3></td>
+                <td><h4>Phone Number</h4></td>
                 <td>:</td>
-                <td><h3><i><%= @user_profile.phone_number %></i></h3></td>
+                <td><h4><i><%= @user_profile.phone_number %></i></h4></td>
             </tr>
         </table>
-        <%= button_to :Assign_Program, new_student_grad_path, method: :get, params: {student_id: @user_profile.user.id}, disabled: @user_profile.status != "Pending" %> 
+        <%= button_to :Assign_Program, new_student_grad_path, method: :get, params: {student_id: @user_profile.user.id}, disabled: @user_profile.status != "Pending" unless !current_user.isAdmin? %> 
     </div>
     <% if @user_profile.user.type == :teacher %>
     <div class="teachers_info">
@@ -42,17 +42,16 @@
         <ul class = 'w3-container'>
             <% @user_profile.user.teaching_courses.each do |course| %>
                 <li>
-                    <%= link_to course.name, course_path(course) %> 
+                    <b>Course: <%= link_to course.name, course_path(course) %></b>
                     <ol>
                         <% course.lessons.each do |lesson| %>
-                        <li><%= link_to lesson.title, lesson_path(lesson) %></li>   
+                        <li> Lesson: <%= link_to lesson.title, lesson_path(lesson) %></li>   
                         <% end %>
                     </ol>
                 </li>
 
             <% end %>
         </ul>
-    </div>
     <% end %>
     <% if @user_profile.user.type == :student || @user_profile.user.type == :unassigned %>
     <div class="students_info">
@@ -60,7 +59,7 @@
         <h3>Status: <i><%= @user_profile.status %></i></h3>
         <% if @user_profile.status != "Pending" %>
             #dashboard info about grad_path and different courses/tests
-            <h3>Program: <i><%= @user_profile.user.program.title %></i></h3>
+            <h3>Program: <i><%= @user_profile.user.enrolled_program.title %></i></h3>
         <% end %>
     </div>
     <% end %>

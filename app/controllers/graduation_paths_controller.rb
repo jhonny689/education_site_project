@@ -17,6 +17,7 @@ class GraduationPathsController < ApplicationController
   end
 
   def new
+    return head(:forbidden) unless current_user.isAdmin?
     @graduation_path = GraduationPath.new
     @course_types = GraduationPath::COURSE_TYPES
     5.times{@graduation_path.grad_programs.build()}
@@ -37,6 +38,7 @@ class GraduationPathsController < ApplicationController
   end
 
   def edit
+    return head(:forbidden) unless current_user.isAdmin?
     @course_types = GraduationPath::COURSE_TYPES
   end
 
@@ -53,6 +55,7 @@ class GraduationPathsController < ApplicationController
   end
 
   def destroy
+    return head(:forbidden) unless current_user.isAdmin?
     @path.grad_programs.each{|gp| gp.destroy}
     @path.destroy
     redirect_to graduation_paths_path

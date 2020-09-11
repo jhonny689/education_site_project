@@ -2,8 +2,10 @@ class UserProfilesController < ApplicationController
   before_action :find_user_profile, only: [:show, :edit, :update, :destroy]
   skip_before_action :user_profile_exist?
   def index
+    @user_profiles = UserProfile.all.filter {|u|
+      !u.user.isAdmin?
+    }
     
-    @user_profiles = UserProfile.all.filter {|u| !u.user.isAdmin?}
     if params[:lookup] && params[:lookup][:name] != ''
       @user_profiles = @user_profiles.filter{|u| u.user.full_name.downcase.include? params[:lookup][:name].downcase}
     end

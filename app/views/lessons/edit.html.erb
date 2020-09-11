@@ -1,9 +1,16 @@
 <div class = 'page-main'>
-    <h1>Edit Lesson</h1>
+<h1>New Lesson Builder</h1>
 
     <%= form_for @lesson do |f| %>
-        <%= f.label :content %>
-        <%= f.text_field :content %>
-        <%= f.submit %>
+        <%= f.label :title %>
+        <%= f.text_field :title %>
+    
+        <%= f.hidden_field :course_id, value: @lesson.course_id %>
+
+        
+        <%= f.rich_text_area :test, id: 'lesson_editor' %>
+        <%= f.submit "Save Lesson Plan", id: 'save_lesson_btn' %>
+        
     <% end %>
+
 </div>

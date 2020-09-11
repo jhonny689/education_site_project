@@ -10,7 +10,7 @@ class UserProfile < ApplicationRecord
 
         if self.user.type == :student || self.user.type == :unassigned
             if self.user.type == :student
-                return self.user.program ? 'Enrolled' : 'Pending'
+                return self.user.enrolled_program ? 'Enrolled' : 'Pending'
             else
                 return 'Pending'
             end

@@ -2,8 +2,12 @@ class StudentsController < ApplicationController
   before_action :find_student, only: [:show, :edit, :update, :destroy]
 
   def index
-    student_ids = StudentGradCourse.all.map{|ugc| ugc.user_id}.uniq
-    @students = User.where(id: student_ids)
+    if current_user.isTeacher?
+      @students = current_user.students
+    else
+      student_ids = StudentGrad.all.map{|sg| sg.user_id}.uniq
+      @students = User.where(id: student_ids)
+    end
   end
 
   def show
@@ -13,7 +17,7 @@ class StudentsController < ApplicationController
   end
 
   def create
-    student = StudentGradCourse.create(student_params)
+    student = StudentGrad.create(student_params)
     if student.valid?
       redirect_to student_path(student)
     else
@@ -42,7 +46,7 @@ class StudentsController < ApplicationController
   private
 
   def find_student
-    StudentGradCourse.find(params[:id])
+    @student = User.find(params[:id])
   end
 
   def student_params
