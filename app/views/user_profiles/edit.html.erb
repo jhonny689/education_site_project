@@ -1,2 +1,30 @@
-<h1>UserProfiles#edit</h1>
-<p>Find me in app/views/user_profiles/edit.html.erb</p>
+<div class ='page-main'>
+<h1>Edit Profile</h1>
+
+
+<div class='finish-profile-container'>
+    <h1> HEY! Finish Creating Your Profile</h1>
+
+    <%= form_for @user_profile do |f| %>
+        
+        <%= f.label 'First Name' %> <br>
+        <%= f.text_field :f_name %> <br>
+
+        <%= f.label "Middle_name" %> <br>
+        <%= f.text_field :m_name %> <br>
+
+        <%= f.label :l_name %> <br>
+        <%= f.text_field :l_name %> <br>
+
+        <%= f.label :phone_number %> <br>
+        <%= f.text_field :phone_number %> <br>
+
+        <%= f.label 'Email' %> <br>
+        <%= f.text_field :email %> <br>
+
+        <%= f.label :is_admin %> <br>
+        <%= f.check_box :is_admin %> <br>
+
+        <%= f.submit 'Finalize' %>
+    </div>
+</div>

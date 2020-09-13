@@ -1,4 +1,5 @@
 <h2>Welcome back, please log in</h2>
+<div class ='page-main'><%= flash[:errors_o] unless !flash[:errors_o] %></div>
 <div class=login_form_container>
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="field">

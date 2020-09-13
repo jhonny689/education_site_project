@@ -32,6 +32,10 @@ class UserProfilesController < ApplicationController
     else
       user_profile = UserProfile.new(user_profile_params)
       user_profile.user_id = current_user.id
+      
+      if current_user.email.include?("@fake.com")
+        current_user.update(email: user_profile.email)
+      end
     
       if user_profile.valid?
         user_profile.save
@@ -69,6 +73,6 @@ class UserProfilesController < ApplicationController
   end
 
   def user_profile_params
-    params.require(:user_profile).permit(:f_name, :m_name, :l_name, :phone_number, :is_admin)
+    params.require(:user_profile).permit(:f_name, :m_name, :l_name, :phone_number, :email, :is_admin)
   end
 end

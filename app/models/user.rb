@@ -44,13 +44,22 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :omniauthable, omniauth_providers: [:facebook, :google_oauth2, :twitter, :github]
 
   def self.from_omniauth(auth)
-    user = where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
-      user.email = auth.info.email
+    #byebug
+    user = where(provider: auth.provider, uid: auth.uid).or(where(email: auth.info.email)).first_or_create do |user|
+      # byebug
+      user.email = auth.info.email ? auth.info.email : "#{auth.uid}@fake.com"
+      user.provider = auth.provider
+      user.uid = auth.uid
       user.password = Devise.friendly_token[0,20]
-      # user.name = auth.info.name
-      # user.image = auth.info.image
+      #user.name = auth.info.name ? auth.info.name : nil
+      #user.image = auth.info.image ? auth.info.image : nil
     end
-    return user
+    # byebug
+    if user.provider == auth.provider
+      return user
+    else
+      return nil
+    end
   end
   
   def type
